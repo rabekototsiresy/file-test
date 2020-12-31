@@ -1,68 +1,52 @@
 import React, { Fragment,useState,useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Email from './components/Email';
+import Password from './components/Password';
+import ButtonConnexion from './components/ButtonConnexion';
+import CreateAccount from './components/CreateAccount';
+import Lang from './components/Lang';
+import BlackBackground from './components/BlackBackground';
+import TitleFb from './components/TitleFb';
+
+
+
 
 function App() {
+ 
 
   const [openModal, setOpenModal] = useState(false)
   let [widthLoading, setWidthLoading] = useState(0)
-  const [shouldCount, setShouldCount] = useState(0)
+  const [shouldCount, setShouldCount] = useState(false)
+
+
+
+
 
   const set_animation = ()=>{
-   
     const hide_body = document.querySelector('#hide_body_id')
+    const loadEl = document.querySelector('#load')
     hide_body.classList.add('hide_body')
-    // setOpenModal(true)
-let i=0;
-    
-
-      let inter = setInterval(() => {
-      let numberByRandom = Math.floor(Math.random() * 10)
-
-      
-      if(widthLoading < 100){
-            
-          setWidthLoading(prev=>prev+numberByRandom)
-      }
-
-
-      if(widthLoading>=100){
-        clearInterval(inter)
-      }
-
-        
-      
-
-        
-    }, 500);
-    
-    
-    
+    setShouldCount(true)
+    loadEl.classList.add("loading")
+  
   }
 
 
   useEffect(() => {
-
-   let myCount =  setInterval(() => {
-      let numberByRandom = Math.floor(Math.random() * 10)
-      if(shouldCount < 100){
-            
-          setShouldCount(prev=>prev+numberByRandom)
-
+    let interval=null
+     if(shouldCount){
+       interval =  setInterval(() => {
+        let numberByRandom = Math.floor(Math.random() * 10)
+        setWidthLoading(widthLoading+numberByRandom)
+        },500)
+      if(widthLoading>97){
+        setOpenModal(true)
+        clearInterval(interval)
       }
-    },1000)
-
-    if(widthLoading>=100){
-      clearInterval( clearInterval(myCount))
-      setOpenModal(true)
-    }
-
-    return clearInterval(myCount)
-
-    console.log("width loading change",widthLoading)
-
-  }, [widthLoading])
-
+     }
+    return ()=>clearInterval(interval)
+  }, [shouldCount,widthLoading])
 
   
 
@@ -80,7 +64,11 @@ let i=0;
   const exitModal = ()=>{
     setOpenModal(false)
     const hide_body = document.querySelector('#hide_body_id')
+    const loadEl = document.querySelector('.loading')
     hide_body.classList.remove('hide_body')
+    loadEl.classList.remove("loading")
+    setWidthLoading(0)
+    setShouldCount(false)
   }
 
 
@@ -88,80 +76,27 @@ let i=0;
   return (
     <Fragment>
       <div className="container">
-        <div className="loading" style={{width: widthLoading+"%"}}></div>
-          <div className="content-fb-title">
-              <span className="title-fb">Facebook</span>
-          </div>
-          
+        <div className="loading"id="load" style={{width: widthLoading+"%"}}></div>
+          <TitleFb />
           <div className="main">
-            <div className="content-input">
-              <label htmlFor="">
-                  Numéro de mobile ou e-mail
-              </label>
-              <input type="text" name="" id="" className="input" />
-            </div>
-            <div className="content-input">
-              <label htmlFor="">
-                  Mot de passe
-              </label>
-              <input type="password" name="" id="" className="input"/>
-            </div>
+            <Email />
+            <Password />
+            <ButtonConnexion set_animation={set_animation} />
 
-            <div className="content-button">
-              <button type="submit" className="button_submit" onClick={set_animation}>
-                Connexion
-              </button>
-            </div>
 
             <p className="forgot">Mot de passe oublié ?</p>
 
-
-            <div className="line-or">
-              <div className="line">
-                <div className="box_one">
-                  <hr/>
-                </div>
-                <span>ou</span>
-                <div className="box_two">
-                  <hr/>
-                </div>
-              </div>
-              <div className="create_new">
-                <button className="button_create">
-                    Créer un compte
-                </button>
-              </div>
-            </div>
-
-            <div className="lang">
-              <p className="text">Malagasy</p>
-              <p className="active">Français (France)</p>
-              <p className="text">English (US)</p>
-             
-            </div>
-            <p className="text">Autres langues...</p>
-
+              <CreateAccount />
+              <Lang />
           </div>
-    </div>
+      </div>
 
-    <div className="" id="hide_body_id">
+      <BlackBackground />
 
-    </div>
-
-    
-{/* modal */}
-
-{modalContent()}
+      {modalContent()}
 
     </Fragment>
   );
 }
 
 export default App;
-/**
- * Mot de passe incorrect
- * 
- * Le mot de passe que vous avez saisi est incorect. Veuillez réesayer
- * 
- * ok
- */

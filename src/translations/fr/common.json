@@ -1,0 +1,13 @@
+{
+    "enter_mobile_or_phone": "Numéro de mobile ou e-mail",
+    "enter_password": "Mot de passe",
+    "login_text": "Connexion",
+    "create_new_account": "Céer un compte",
+    "or": "ou",
+    "forgot_pass": "Mot de passe oublié ?",
+    "more_lang": "Autre langues...",
+    "pass_wrong":{
+        "title": "Mot de passe incorect",
+        "message": "Le mot de passe que vous avez saisi est incorrect. Veuillez réessayer."
+    } 
+}

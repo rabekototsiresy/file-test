@@ -65,7 +65,7 @@ body,html{
 }
 
 .line-or{
-  margin: 30px 0px;
+  margin: 20px 0px;
 }
 
 .line{
@@ -104,6 +104,7 @@ body,html{
 
 .text{
   color: #5793ff;
+  text-decoration: none;
 }
 
 .lang{
@@ -154,4 +155,16 @@ body,html{
 .hideLoad{
   display: none;
  
+}
+.activeLink{
+  color: black!important;
+  text-decoration: none;
+}
+
+.main-lang{
+  display: flex;
+  flex-direction: column;
+
+  height:90px ;
+  justify-content: space-around;
 }

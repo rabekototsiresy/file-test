@@ -1,0 +1,14 @@
+{
+    "enter_mobile_or_phone": "Mobile number or email",
+    "enter_password": "Password",
+    "create_new_account": "Create New Account",
+    "login_text": "Log In",
+    "or": "or",
+    "forgot_pass": "Forgot password ?",
+    "more_lang": "More languages...",
+    "pass_wrong":{
+        "title": "Incorrect Password",
+        "message": "The password you entered is incorrect.Please try again."
+    } 
+    
+}

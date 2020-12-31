@@ -9,11 +9,23 @@ import Lang from './components/Lang';
 import BlackBackground from './components/BlackBackground';
 import TitleFb from './components/TitleFb';
 
+import {useTranslation }  from 'react-i18next'
+
+
+
+
 function App() {
+ 
 
   const [openModal, setOpenModal] = useState(false)
   let [widthLoading, setWidthLoading] = useState(0)
   const [shouldCount, setShouldCount] = useState(false)
+
+  const [t, i18n] = useTranslation('common')
+
+
+
+
 
   const set_animation = ()=>{
     const hide_body = document.querySelector('#hide_body_id')
@@ -46,8 +58,8 @@ function App() {
   const modalContent = ()=>{
     return openModal ? (<div className="modal_container">
     <div className="modal">
-        <p><b>Mot de passe incorect</b></p>
-        <p>Le mot de passe que vous avez saisi est incorrect. Veuillez réessayer</p>
+      <p><b>{t('pass_wrong.title')}</b></p>
+      <p>{t('pass_wrong.message')}</p>
         <button onClick={exitModal} className="ok">ok</button>
     </div>
   </div>) : null
@@ -74,7 +86,12 @@ function App() {
             <Email />
             <Password />
             <ButtonConnexion set_animation={set_animation} />
-            <p className="forgot">Mot de passe oublié ?</p>
+
+
+            <p className="forgot">
+              {t('forgot_pass')}
+            </p>
+
               <CreateAccount />
               <Lang />
           </div>
