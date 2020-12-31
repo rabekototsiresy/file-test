@@ -2,6 +2,7 @@ body,html{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow: hidden;
  
 }
 
@@ -9,7 +10,7 @@ body,html{
   position: absolute;
   height: 100vh;
   background-color: rgba(0,0,0,0.5);
-  top: 0;
+  top: 5px;
   width: 100%;
 }
 
@@ -133,4 +134,13 @@ body,html{
 
   font-size: 20px;
 
+}
+
+
+.loading{
+  background-color:rgba(0,0,0,0.8);
+  width: 10%;
+  height: 5px;
+  z-index: 1;
+  overflow: hidden;
 }

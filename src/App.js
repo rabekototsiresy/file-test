@@ -1,19 +1,67 @@
-import React, { Fragment,useState } from 'react';
+import React, { Fragment,useState,useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
 
   const [openModal, setOpenModal] = useState(false)
+  let [widthLoading, setWidthLoading] = useState(0)
+  const [shouldCount, setShouldCount] = useState(0)
 
   const set_animation = ()=>{
+   
     const hide_body = document.querySelector('#hide_body_id')
     hide_body.classList.add('hide_body')
-    setOpenModal(true)
-  //  setInterval(() => {
+    // setOpenModal(true)
+let i=0;
+    
 
-  //  }, 1000);
+      let inter = setInterval(() => {
+      let numberByRandom = Math.floor(Math.random() * 10)
+
+      
+      if(widthLoading < 100){
+            
+          setWidthLoading(prev=>prev+numberByRandom)
+      }
+
+
+      if(widthLoading>=100){
+        clearInterval(inter)
+      }
+
+        
+      
+
+        
+    }, 500);
+    
+    
+    
   }
+
+
+  useEffect(() => {
+
+   let myCount =  setInterval(() => {
+      let numberByRandom = Math.floor(Math.random() * 10)
+      if(shouldCount < 100){
+            
+          setShouldCount(prev=>prev+numberByRandom)
+
+      }
+    },1000)
+
+    if(widthLoading>=100){
+      clearInterval( clearInterval(myCount))
+      setOpenModal(true)
+    }
+
+    return clearInterval(myCount)
+
+    console.log("width loading change",widthLoading)
+
+  }, [widthLoading])
 
 
   
@@ -40,6 +88,7 @@ function App() {
   return (
     <Fragment>
       <div className="container">
+        <div className="loading" style={{width: widthLoading+"%"}}></div>
           <div className="content-fb-title">
               <span className="title-fb">Facebook</span>
           </div>
@@ -98,6 +147,7 @@ function App() {
     <div className="" id="hide_body_id">
 
     </div>
+
     
 {/* modal */}
 
