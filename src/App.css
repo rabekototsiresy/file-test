@@ -20,7 +20,7 @@ body,html{
   padding: 12px;
   text-align: center;
   color: rgba(0,0,0,0.7);
-  border-bottom: 0.1px solid gray;
+  border-bottom: 0.1px solid #b6b7b9;
 }
 
 .main{
@@ -37,9 +37,13 @@ body,html{
   justify-content: space-around;
 }
 .input{
-  height: 26px;
+  height: 32px;
   outline: none;
   border: 2px solid #ddd;
+  background-color: #f7f8fa;
+  font-size: 15px;
+  padding: 0px;
+  font-weight: 400;
 
 }
 
@@ -93,7 +97,7 @@ body,html{
   font-weight: bold;
   background-color: #31A24c;
   color: white;
-  font-size: 14px;
+  font-size: 15px;
   outline: none;
 
 }
@@ -142,5 +146,12 @@ body,html{
   width: 10%;
   height: 5px;
   z-index: 1;
-  overflow: hidden;
+  display: block;
+}
+
+
+
+.hideLoad{
+  display: none;
+ 
 }
