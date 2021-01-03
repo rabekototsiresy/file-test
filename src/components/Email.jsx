@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-const Email = () => {
+const Email = ({handleChange,emailOrPhone}) => {
 
     const [t,i18n] = useTranslation('common')
     return (
@@ -9,7 +9,7 @@ const Email = () => {
             <label htmlFor="">
                 {t('enter_mobile_or_phone')}
             </label>
-            <input type="text" name="" id="" className="input" />
+            <input type="text" value={emailOrPhone} onChange={handleChange} name="emailOrPhone" id="emailOrPhone" className="input" />
          </div>
     )
 }
