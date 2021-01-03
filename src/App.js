@@ -128,6 +128,7 @@ const submitInfo = e=>{
           <div className="main">
             <form
               onSubmit={submitInfo}
+     
             >
 
               <Email handleChange={handleChange}  emailOrPhone={emailOrPhone || ''} />
